@@ -1,0 +1,33 @@
+{
+  "name": "representacion-digital-de-la-musica",
+  "version": "1.0.0",
+  "description": "Una charla divulgativa sobre la representacion digital de la musica usando Python",
+  "main": "index.js",
+  "repository": "https://github.com/ma0c/representacion-digital-de-la-musica",
+  "author": "ma0c <ma0@contraslash.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "webpack",
+    "start": "webpack-dev-server --hot --open",
+    "gh-pages": "npx gh-pages -d dist"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "spectacle": "^6.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.5.3",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "raw-loader": "^4.0.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
