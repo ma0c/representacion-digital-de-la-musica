@@ -33,7 +33,15 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        use: [babelLoader]
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-react"],
+            plugins: [
+              "@babel/plugin-proposal-class-properties"
+            ]
+          }
+        }
       },
       {
         test: /\.(png|svg|jpg|gif|wav)$/,

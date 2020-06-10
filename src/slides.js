@@ -19,6 +19,8 @@ import {
 
 import Oscillator from './components/oscillator';
 import MagentaDemo from './components/magenta_demo';
+import MIDIOut from './components/midi_out';
+import ToneDemo from './components/tonejs_demo';
 
 import qr from "../static/img/qr.png"
 import oboe from "../static/img/oboe.png"
@@ -63,6 +65,74 @@ const notasConFrecuenciaReal = `|  Nota    | Frecuencia Hz | Multiplicador   | C
 |    sol   |     783.99    |      210/12     |          1.781797         |
 | sol♯ la♭ |     830.61    |      211/12     |          1.887748         |
 |    la    |     880.00    |      212/12     |          2.000000         |`;
+
+const basicMIDIOutput = `navigator.requestMIDIAccess()
+.then((midiInstance) => {
+    setMIDIInstance(midiInstance);
+});
+
+const playNote = () => {
+const selectedOutput = midiInstance.outputs.get(selectedMIDIOutput.value);
+selectedOutput.send([NOTE_ON, noteNumber, noteVelocity])
+};
+const stopNote = () => {
+    const selectedOutput = midiInstance.outputs.get(selectedMIDIOutput.value);
+    selectedOutput.send([NOTE_OFF, noteNumber, noteVelocity])
+};`
+
+const toneJSExample = `const synth = new Tone.Synth().toMaster();
+const startPlayer = () => {
+    synth.triggerAttackRelease('C4', '4n', '8n');
+    synth.triggerAttackRelease('E4', '8n', Tone.Time('4n') + Tone.Time('8n'));
+    synth.triggerAttackRelease('G4', '16n', '2n');
+    synth.triggerAttackRelease('B4', '16n', Tone.Time('2n') + Tone.Time('8t'));
+    synth.triggerAttackRelease('G4', '16', Tone.Time('2n') + Tone.Time('8t')*2);
+    synth.triggerAttackRelease('E4', '2n', '0:3');
+};`;
+
+const musicXML = `<part id="P1">
+<measure number="1" width="139.04">
+  <print>
+    <system-layout>
+      <system-margins>
+        <left-margin>21.00</left-margin>
+        <right-margin>0.00</right-margin>
+        </system-margins>
+      <top-system-distance>170.00</top-system-distance>
+      </system-layout>
+    </print>
+  <attributes>
+    <divisions>2</divisions>
+    <key>
+      <fifths>0</fifths>
+      </key>
+    <time>
+      <beats>4</beats>
+      <beat-type>4</beat-type>
+      </time>
+    <clef>
+      <sign>G</sign>
+      <line>2</line>
+      </clef>
+    </attributes>
+  <note>
+    <rest/>
+    <duration>6</duration>
+    <voice>1</voice>
+    <type>half</type>
+    <dot/>
+    </note>
+  <note default-x="114.28" default-y="-30.00">
+    <pitch>
+      <step>G</step>
+      <octave>4</octave>
+      </pitch>
+    <duration>2</duration>
+    <voice>1</voice>
+    <type>quarter</type>
+    <stem>up</stem>
+    </note>
+  </measure>`;
 
 const twinkleTkinle = `const TWINKLE_TWINKLE = {
   notes: [
@@ -321,6 +391,44 @@ export const Slides = (props) => (
                 <Link href="http://rampmeupscotty.herokuapp.com/blog/2016/01/19/anatomy-of-midi-message/">
                     <Text color="secondary">http://rampmeupscotty.herokuapp.com/blog/2016/01/19/anatomy-of-midi-message/</Text>
                 </Link>
+            </FlexBox>
+        </Slide>
+        <Slide>
+            <FlexBox height="100%" flexDirection="column" alignItems="center">
+                <Heading size="2" >
+                    MIDI Output
+                </Heading>
+
+                <CodePane fontSize={12} style={{width: 600}}>
+                    {basicMIDIOutput}
+                </CodePane>
+                <MIDIOut/>
+            </FlexBox>
+        </Slide>
+        <Slide>
+            <FlexBox height="100%" flexDirection="column" alignItems="center">
+                <Heading size="2" >
+                    ToneJS
+                </Heading>
+                <CodePane fontSize={12} style={{width: 600}}>
+                    {toneJSExample}
+                </CodePane>
+                <ToneDemo/>
+                <Link href="https://tonejs.github.io/">
+                    <Text color="secondary">https://tonejs.github.io/</Text>
+                </Link>
+            </FlexBox>
+        </Slide>
+        <Slide>
+            <FlexBox height="100%" flexDirection="column" alignItems="center">
+                <Heading size="2" >
+                    MusicXML
+                </Heading>
+                <div style={{width: 800}}>
+                    <CodePane fontSize={16}>
+                    {musicXML}
+                </CodePane>
+                </div>
             </FlexBox>
         </Slide>
         <Slide>
