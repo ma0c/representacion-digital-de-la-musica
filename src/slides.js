@@ -241,8 +241,8 @@ export const Slides = (props) => (
                     </Markdown>
                 </Appear>
                 <Appear elementNum={1}>
-                    <Oscillator minFrequency={100} maxFrequency={200}/>
-                    <Oscillator minFrequency={100} maxFrequency={200}/>
+                    <Oscillator minFrequency={200} maxFrequency={400}/>
+                    <Oscillator minFrequency={200} maxFrequency={400}/>
                 </Appear>
                 <Notes>
                     Integrando la horizontalidad del tiempo y el ritmo, se introduce el concepto de altura, la cual representa
